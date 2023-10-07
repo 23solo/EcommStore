@@ -23,3 +23,11 @@ pnpm dev
 # or
 bun dev
 ```
+
+## Developer Pre-Requisite
+
+```bash
+# from your root folder run the following to enable githooks
+chmod +x githooks/pre-commit
+ln -s -f ../../githooks/pre-commit .git/hooks/
+```
