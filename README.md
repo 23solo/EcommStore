@@ -1,6 +1,6 @@
 ## Tasks :
 
-- Add gitHooks for master check and makefile to create Branches with same naming convention.
+- Add gitHooks for master check and makefile to create Branches with same naming convention. (Done)
 - Initialize with MongoDb to store the userData.
   - email, password, isAdmin, isVerifiedUser, totalNumberOfOrders, coupons, totalItemsPurchased, totalAmountSpent, totalAmountSaved, isCouponValid, cartItems(key value)
 - Create basic user login, signup, logout.(UI)
