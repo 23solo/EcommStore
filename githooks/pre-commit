@@ -1,0 +1,8 @@
+#!/bin/sh
+
+RED='\033[0;31m'
+branch_name=$(git symbolic-ref -q HEAD | cut -d"/" -f 3)
+if [[ "$branch_name" == "master" ]]; then
+  echo "${RED}Cannot commit on master !!! "
+  exit 1
+fi;

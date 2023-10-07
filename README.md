@@ -1,6 +1,6 @@
 ## Tasks :
 
-- Add gitHooks for master check and makefile to create Branches with same naming convention.
+- Add gitHooks for master check and makefile to create Branches with same naming convention. (Done)
 - Initialize with MongoDb to store the userData.
   - email, password, isAdmin, isVerifiedUser, totalNumberOfOrders, coupons, totalItemsPurchased, totalAmountSpent, totalAmountSaved, isCouponValid, cartItems(key value)
 - Create basic user login, signup, logout.(UI)
@@ -22,4 +22,15 @@ yarn dev
 pnpm dev
 # or
 bun dev
+```
+
+## Developer Pre-Requisite
+
+```bash
+# from your root folder run the following to enable githooks
+chmod +x githooks/pre-commit
+ln -s -f ../../githooks/pre-commit .git/hooks/
+
+# To Create a new Branch please use the following to keep it clean
+make branch name=NameOfTheBranch
 ```
