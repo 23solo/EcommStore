@@ -30,4 +30,7 @@ bun dev
 # from your root folder run the following to enable githooks
 chmod +x githooks/pre-commit
 ln -s -f ../../githooks/pre-commit .git/hooks/
+
+# To Create a new Branch please use the following to keep it clean
+make branch name=NameOfTheBranch
 ```

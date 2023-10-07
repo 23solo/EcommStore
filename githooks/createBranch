@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -z "$name" ]; then
+  echo "${RED}Cannot create branch without name !!! "
+  exit 1
+fi;
+echo $1
+newCount=$(($1+1))
+echo $newCount
+git checkout -b "ECOMM_$1"_"$name"
+sed -i '' "s/currentBranchCount=$1/currentBranchCount=$newCount/g" ./Makefile
