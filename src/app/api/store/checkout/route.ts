@@ -30,9 +30,11 @@ const addCouponForUser = async (user: any) => {
   const coupon = generateHash(
     user.totalNumberOfOrders + 1 + process.env.TOKEN_SECRET!
   );
-  user.coupons.push(coupon);
-  user.isCouponValid = true;
-  await user.save();
+  if (!user.coupons.includes(coupon)) {
+    user.coupons.push(coupon);
+    user.isCouponValid = true;
+    await user.save();
+  }
   return coupon;
 };
 

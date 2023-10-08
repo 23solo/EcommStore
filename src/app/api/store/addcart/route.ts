@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     }
 
     // add the item to user's cart
-    const newPair = { key: bookID, value: price };
+    const newPair = { id: Number(bookID), price: Number(price) };
     user.cartItems.push(newPair);
 
     console.log('Updated cart items:', user.cartItems);

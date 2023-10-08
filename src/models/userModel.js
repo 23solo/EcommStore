@@ -51,9 +51,6 @@ const userSchema = new mongoose.Schema({
     type: [
       {
         id: {
-          type: String,
-        },
-        price: {
           type: Number,
         },
         price: {

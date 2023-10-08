@@ -33,9 +33,7 @@ const CheckoutPage = () => {
       setIsLoading(true);
 
       const res = await axios.post('/api/store/buyorder', {
-        coupon: coupon,
-        amount: totalAmount,
-        totalItem: totalItems,
+        coupon: couponInput,
       });
 
       router.push('/dashboard');
@@ -73,8 +71,8 @@ const CheckoutPage = () => {
 
   // Calculate total amount when cart items change
   useEffect(() => {
-    const values = cartItems.map((item: any) => item.value);
-    const sum = values.reduce(
+    const prices = cartItems.map((item: any) => item.price);
+    const sum = prices.reduce(
       (accumulator, currentValue) => accumulator + currentValue,
       0
     );
@@ -86,9 +84,9 @@ const CheckoutPage = () => {
       {cartItems.length > 0 ? (
         cartItems.map((element: any, index) => (
           <div key={index} className='item'>
-            <span>Item Id: {element.key}</span>
+            <span>Item Id: {element.id}</span>
             <br />
-            <span>Item Price: {element.value}</span>
+            <span>Item Price: {element.price}</span>
             <br />
           </div>
         ))
