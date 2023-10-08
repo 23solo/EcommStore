@@ -3,82 +3,73 @@
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function loginPage() {
+export default function LoginPage() {
   const router = useRouter();
-  const [user, setUser] = React.useState({
+  const [user, setUser] = useState({
     email: '',
     password: '',
   });
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  // Will be used if data field is not present
-  const [buttonDisabled, setButtonDisabled] = React.useState(false);
-  // Loading functionality as api can take long for certain requests
-  const [loading, setLoading] = React.useState(false);
-
-  const onLogin = async () => {
+  const handleLogin = async () => {
     try {
-      // Let the user know the request is being processed
       setLoading(true);
       await axios.post('/api/users/login', user);
-      // After success push to dashboard
       router.push('/dashboard');
     } catch (error: any) {
-      console.log('Login Failed', error.message);
+      console.log('Login Failed:', error.message);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    if (user.email.length > 0 && user.password.length > 0) {
+    const { email, password } = user;
+    if (email.length > 0 && password.length > 0) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
     }
   }, [user]);
 
-  // ToDo: handle error from api
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
       <h1>{loading ? 'Processing' : 'Login'}</h1>
       <hr />
-      <label htmlFor='email'>email</label>
+      <label htmlFor='email'>Email</label>
       <input
         className='border border-gray-600 rounded-lg mb-4 focus:outline-none focus:border-gray-600'
         id='email'
         type='text'
         value={user.email}
-        onChange={(e) => {
-          setUser({ ...user, email: e.target.value });
-        }}
-        placeholder='email'
+        onChange={(e) => setUser({ ...user, email: e.target.value })}
+        placeholder='Email'
       />
-      <label htmlFor='password'>password</label>
+      <label htmlFor='password'>Password</label>
       <input
         className='border border-gray-600 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black'
         id='password'
-        type='text'
+        type='password'
         value={user.password}
-        onChange={(e) => {
-          setUser({ ...user, password: e.target.value });
-        }}
-        placeholder='password'
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
+        placeholder='Password'
       />
       <button
         className='btn p-2 border border-gray-600 rounded-lg mb-4 focus:outline-none focus:border-gray-600'
         type='button'
-        disabled={buttonDisabled} // Disable the button when value doesn't exist
-        onClick={onLogin}
+        disabled={buttonDisabled}
+        onClick={handleLogin}
         style={{
           padding: '8px 16px',
           color: '#fff',
           background: buttonDisabled ? 'red' : 'green',
           border: 'none',
           borderRadius: '4px',
-          pointerEvents: !buttonDisabled ? 'auto' : 'none', // Set pointer-events to none when disabled
-          cursor: !buttonDisabled ? 'pointer' : 'default', // Set cursor to default when disabled
+          pointerEvents: buttonDisabled ? 'none' : 'auto',
+          cursor: buttonDisabled ? 'default' : 'pointer',
         }}
       >
         Login
