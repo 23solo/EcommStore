@@ -34,8 +34,6 @@ const CheckoutPage = () => {
 
       const res = await axios.post('/api/store/buyorder', {
         coupon: couponInput,
-        amount: totalAmount,
-        totalItem: totalItems,
       });
 
       router.push('/dashboard');

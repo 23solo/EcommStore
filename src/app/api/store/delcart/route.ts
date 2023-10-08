@@ -43,10 +43,14 @@ async function getUser(username: string | undefined, request: NextRequest) {
   return await User.findOne(query);
 }
 
-function removeCartItem(cartItems: any[], bookID: string): any[] {
+function removeCartItem(cartItems: any[], bookID: number): any[] {
   console.log('Removing item from cart...');
 
-  return cartItems.filter((item: any) => item.key !== bookID);
+  const index = cartItems.findIndex((item: any) => item.id === bookID);
+  if (index !== -1) {
+    cartItems.splice(index, 1);
+  }
+  return cartItems;
 }
 
 async function saveUser(user: any, cartItems: any[]): Promise<void> {

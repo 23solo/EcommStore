@@ -8,7 +8,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { username, coupon, amount, totalItem } = reqBody;
+    const { username, coupon } = reqBody;
 
     const user = await findUser(username, request);
 
@@ -19,9 +19,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const { amount, totalItem } = calculateAmount(user.cartItems);
+
     if (amount <= 0) {
       return NextResponse.json(
-        { error: "Amount can't be 0 or less" },
+        { error: 'No product in cart!!' },
         { status: 401 }
       );
     }
@@ -37,6 +39,8 @@ export async function POST(request: NextRequest) {
     const response = NextResponse.json({
       message: 'Buy Order Placed',
       success: true,
+      totalItem: totalItem,
+      amountPaid: amount,
     });
 
     log('Sending the response:', response);
@@ -57,6 +61,17 @@ async function findUser(username: string | undefined, request: NextRequest) {
 
     return await User.findById(userId).select('-password');
   }
+}
+
+function calculateAmount(cartItems: any[]) {
+  const prices = cartItems.map((item: any) => item.price);
+  const totalItem = cartItems.length;
+  const amount = prices.reduce(
+    (accumulator: number, currentValue: number) => accumulator + currentValue,
+    0
+  );
+
+  return { amount, totalItem };
 }
 
 function handleCoupon(
