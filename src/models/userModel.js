@@ -55,9 +55,6 @@ const userSchema = new mongoose.Schema({
         },
         price: {
           type: Number,
-        },
-        price: {
-          type: Number,
           default: 0,
         },
       },
