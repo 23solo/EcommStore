@@ -50,11 +50,15 @@ const userSchema = new mongoose.Schema({
   cartItems: {
     type: [
       {
-        key: {
+        id: {
           type: String,
         },
-        value: {
+        price: {
           type: Number,
+        },
+        price: {
+          type: Number,
+          default: 0,
         },
       },
     ],

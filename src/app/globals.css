@@ -25,3 +25,91 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Style the table headings */
+th {
+  font-weight: bold;
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: left;
+}
+
+/* Style the table rows */
+tr {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style the table cells */
+td {
+  padding: 10px;
+}
+
+/* Style the alternating table rows */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.addButton {
+  color: rgb(0, 0, 0);
+  background-color: rgb(133, 247, 133);
+}
+
+.removeButton {
+  color: rgb(0, 0, 0);
+  background-color: rgb(249, 111, 111);
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.item {
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+.coupon {
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+}
+
+.btn-green {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-green:hover {
+  background-color: #45a049;
+}
+
+.total-amount {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
