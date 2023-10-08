@@ -3,8 +3,8 @@
 - Add gitHooks for master check and makefile to create Branches with same naming convention. (Done)
 - Initialize with MongoDb to store the userData.
   - email, password, isAdmin, isVerifiedUser, totalNumberOfOrders, coupons, totalItemsPurchased, totalAmountSpent, totalAmountSaved, isCouponValid, cartItems(key value) (Done)
-- Create basic user login, signup, logout.(UI)
-- Create basic user login, signup, logout.(BE)
+- Create basic user login, signup, logout.(UI) (Done)
+- Create basic user login, signup, logout.(BE) (Done)
 - Add a static file to list all the items (instead of DB).
 - Create Endpoints for adding items to cart, checkout api which validates the coupon.
 - Generate coupon if client has nth order.
