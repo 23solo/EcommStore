@@ -1,3 +1,3 @@
-currentBranchCount=3
+currentBranchCount=4
 branch:
 	./githooks/createBranch $(currentBranchCount) $(name)
